@@ -45,13 +45,13 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		zipfile.AddEntry(report.Name()+"/"+resp.Filename, resp.Content)
+		zipfile.AddEntry("gastos/"+resp.Filename, resp.Content)
 		for _, expense := range report.ExpenseFiles() {
 			resp, err := doli.DownloadExpense(expense)
 			if err != nil {
 				panic(err)
 			}
-			zipfile.AddEntry(report.Name()+"/facturas/"+resp.Filename, resp.Content)
+			zipfile.AddEntry("gastos/facturas/"+resp.Filename, resp.Content)
 		}
 	}
 	if err := zipfile.WriteFile(os.Args[1] + ".zip"); err != nil {
